@@ -7,5 +7,3 @@ Embora o desafio do devchallenges.io já tenha fornecido uma API, ela não está
 
 ## Tecnologias utilizadas
 [![My Skills](https://skillicons.dev/icons?i=nestjs,typescript,mongodb)](https://skillicons.dev)
-<!-- <img src="https://github.com/colinhacks/zod/blob/master/logo.svg" alt="Descrição da Imagem" width="50" height="50" style="border-radius: 20px">
- -->
