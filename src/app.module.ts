@@ -3,14 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JobModule } from './job/job.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import * as env from 'dotenv';
+env.config();
 
 @Module({
-  imports: [
-    JobModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://admin:w7g3QPOKwcJ3IVHE@jobcluster.rr4t5hu.mongodb.net/?retryWrites=true&w=majority',
-    ),
-  ],
+  imports: [JobModule, MongooseModule.forRoot(process.env.DATABASE_URL)],
   controllers: [AppController],
   providers: [AppService],
 })
