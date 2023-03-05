@@ -27,6 +27,9 @@ export class Job {
 
   @Prop()
   howToApply: string[];
+
+  @Prop()
+  description: string[];
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

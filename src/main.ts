@@ -2,6 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as env from 'dotenv';
+import { DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger/dist';
 env.config();
 
 async function bootstrap() {
@@ -12,6 +14,14 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  const config = new DocumentBuilder()
+    .setTitle('Jobs API')
+    .setDescription('The Jobs API documentation')
+    .setVersion('1.0')
+    .addTag('Jobs')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api-doc', app, document);
   await app.listen(process.env.PORT);
 }
 bootstrap();

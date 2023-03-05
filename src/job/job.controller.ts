@@ -15,21 +15,38 @@ import { JobService } from './job.service';
 import { JobDocument } from '../schemas/Job.schema';
 import { CreateJobDto } from '../dtos/job/createJob.dto';
 import { UpdatePartialJobDto } from '../dtos/job/updatePartialJob';
+import { ApiResponse } from '@nestjs/swagger/dist/decorators';
 
 @Controller('jobs')
 export class JobController {
   constructor(@Inject(JobService) private jobService: JobService) {}
   @Get('/')
+  @ApiResponse({
+    status: 200,
+    description: 'All user finded',
+  })
   getAllJobs(): Promise<JobDocument[]> {
     return this.jobService.findAllJobs();
   }
 
   @Post('/')
+  @ApiResponse({
+    status: 201,
+    description: 'The job has been successfully created.',
+  })
   createJob(@Body() body: CreateJobDto): Promise<JobDocument> {
     return this.jobService.createJob(body);
   }
 
   @Patch('/:id')
+  @ApiResponse({
+    status: 200,
+    description: 'The job has been successfully updated.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'The job has not been found and cannot be updated.',
+  })
   async updatePartialJob(
     @Param('id') id: string,
     @Body() body: UpdatePartialJobDto,
@@ -45,6 +62,14 @@ export class JobController {
   }
 
   @Delete('/:id')
+  @ApiResponse({
+    status: 200,
+    description: 'The job has been successfully deleted.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'The job has not been found and cannot be deleted.',
+  })
   async deleteFromId(@Param('id') id: string, @Res() response: Response) {
     const result = await this.jobService.deleteFromId(id);
     if ('error' in result) {

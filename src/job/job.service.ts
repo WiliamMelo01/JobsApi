@@ -16,7 +16,15 @@ export class JobService {
   constructor(@Inject('JobModel') private jobModel: Model<JobDocument>) {}
 
   async createJob(body: CreateJobDto) {
-    const { citys, companyImage, companyName, howToApply, tags, title } = body;
+    const {
+      citys,
+      companyImage,
+      companyName,
+      howToApply,
+      tags,
+      title,
+      description,
+    } = body;
     const newJob = new this.jobModel({
       title,
       citys,
@@ -24,6 +32,7 @@ export class JobService {
       companyImage,
       tags,
       howToApply,
+      description,
     });
     return await newJob.save();
   }
