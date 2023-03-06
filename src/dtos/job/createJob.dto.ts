@@ -23,7 +23,7 @@ export class CreateJobDto {
   tags: string[];
 
   @ApiProperty()
-  @IsArray()
+  @IsString()
   howToApply: string;
 
   @ApiProperty()
