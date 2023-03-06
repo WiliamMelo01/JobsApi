@@ -26,7 +26,7 @@ export class Job {
   createdAt: Date;
 
   @Prop()
-  howToApply: string[];
+  howToApply: string;
 
   @Prop()
   description: string[];

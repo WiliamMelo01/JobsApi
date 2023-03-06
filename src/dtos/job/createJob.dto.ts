@@ -24,7 +24,7 @@ export class CreateJobDto {
 
   @ApiProperty()
   @IsArray()
-  howToApply: string[];
+  howToApply: string;
 
   @ApiProperty()
   @IsArray()
