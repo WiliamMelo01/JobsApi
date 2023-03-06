@@ -30,6 +30,9 @@ export class Job {
 
   @Prop()
   description: string[];
+
+  @Prop({ default: false })
+  fullltime?: boolean;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

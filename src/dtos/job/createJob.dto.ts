@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger/dist';
-import { IsString, IsArray } from 'class-validator';
+import { IsString, IsArray, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateJobDto {
   @IsString()
@@ -29,4 +29,9 @@ export class CreateJobDto {
   @ApiProperty()
   @IsArray()
   description: string[];
+
+  @ApiProperty()
+  @IsBoolean()
+  @IsOptional()
+  fulltime: boolean;
 }

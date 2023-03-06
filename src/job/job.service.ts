@@ -24,6 +24,7 @@ export class JobService {
       tags,
       title,
       description,
+      fulltime,
     } = body;
     const newJob = new this.jobModel({
       title,
@@ -33,11 +34,12 @@ export class JobService {
       tags,
       howToApply,
       description,
+      fulltime,
     });
     return await newJob.save();
   }
 
-  async findAllJobs() {
+  async findAllJobs(): Promise<JobDocument[]> {
     return await this.jobModel.find();
   }
 
