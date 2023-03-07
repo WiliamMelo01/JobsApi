@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Req,
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
@@ -76,6 +77,15 @@ export class JobController {
       return response
         .status(HttpStatus.NOT_FOUND)
         .json({ error: result.error });
+    }
+    return response.status(HttpStatus.OK).json(result);
+  }
+
+  @Get('/tags/:tags')
+  async findByTag(@Param('tags') tag: string, @Res() response: Response) {
+    const result = await this.jobService.findByTag(tag);
+    if ('error' in result) {
+      return response.status(HttpStatus.NOT_FOUND).json(result);
     }
     return response.status(HttpStatus.OK).json(result);
   }

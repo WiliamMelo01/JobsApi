@@ -69,4 +69,17 @@ export class JobService {
       return { error: 'USer was not found', statusCode: 404 };
     }
   }
+
+  async findByTag(tag: string): Promise<JobDocument[] | { error: string }> {
+    try {
+      const job = await this.jobModel.find({
+        tags: { $in: [tag] },
+      });
+
+      return job.length > 0 ? job : { error: 'No jobs found with this tag' };
+    } catch (error) {
+      console.log(error);
+      return { error: 'No jobs found with this tag' };
+    }
+  }
 }
