@@ -89,4 +89,14 @@ export class JobController {
     }
     return response.status(HttpStatus.OK).json(result);
   }
+
+  @Get('/city/:city')
+  async findByCity(@Res() response: Response, @Param('city') city: string) {
+    const result = await this.jobService.findByCity(city);
+    if ('error' in result) {
+      return response.status(HttpStatus.NOT_FOUND).json(result);
+    }
+
+    return response.status(HttpStatus.OK).json(result);
+  }
 }

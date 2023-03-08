@@ -82,4 +82,18 @@ export class JobService {
       return { error: 'No jobs found with this tag' };
     }
   }
+
+  async findByCity(city: string): Promise<JobDocument[] | { error: string }> {
+    try {
+      const result = await this.jobModel.find({
+        citys: { $in: [city] },
+      });
+      return result.length > 0
+        ? result
+        : { error: 'No jobs found with this city name' };
+    } catch (error) {
+      console.log(error);
+      return { error: 'No jobs found with this city name' };
+    }
+  }
 }
